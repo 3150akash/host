@@ -9,7 +9,8 @@
     <script type="systemjs-importmap">
       {
         "imports": {
-            "react_app": "http://localhost:8080/testmicrofe1-abcmicrofe.js",
+            "microfe1": "http://localhost:8081/testmicrofe1-abcmicrofe.js",
+            "microfe2": "http://localhost:8080/Akzsh-MicroFe2.js",
             "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@4.3.7/lib/system/single-spa.min.js"
         }
       }
@@ -43,15 +44,22 @@
     <script>
       System.import('single-spa').then(function (singleSpa) {
         singleSpa.registerApplication(
-          'react_app',
-          () => System.import('react_app'),
+          'microfe1',
+          () => System.import('microfe1'),
+          location => location.pathname.startsWith('/')
+        );
+        singleSpa.registerApplication(
+          'microfe2',
+          () => System.import('microfe2'),
           location => location.pathname.startsWith('/')
         );
         singleSpa.start();
       })
     </script>
 
-    <div id="single-spa-application:react_app">
+    <div id="single-spa-application:microfe1">
+    </div>
+    <div id="single-spa-application:microfe2">
     </div>
 
 
